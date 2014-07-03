@@ -1,0 +1,353 @@
+/* ---------- LOCALVIDEO ---------- */
+#localVideo {
+  position: absolute;
+  border: solid 1px #000;
+  height: 152px;
+  width: 202px;
+  right: 20px;
+  bottom: 20px;
+ }
+
+ #localVideo video {
+  width: 200px;
+ }
+
+/* ---------- REMOTESVIDEOS ---------*/
+
+#remotesVideos {
+  overflow: hidden;
+}
+
+#remotesVideos video {
+
+}
+
+#timer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 5px;
+  background-color: blue;
+}
+
+/* ---------- ADMIN ---------- */
+#edit {
+  width: 300px;
+  margin: 20px auto 0;
+}
+
+.location {
+  min-height: 200px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.location ul {
+  list-style-type: none;
+  margin-right: 30px;
+}
+
+.screenHolder {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.screenHolder ul li {
+  list-style-type: none;
+  padding: 5px;
+  border: solid 1px #FFF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.locationHolder {
+  border: solid 1px #CCC;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.screenHolder ol {
+
+}
+
+.screenHolder ol li {
+  padding: 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.screenHolder ol li .glyphicon-remove-circle {
+  float: right;
+}
+
+#screenList {
+  margin-top: 20px;
+  border: solid 1px #CCC;
+  padding-bottom: 20px;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+#screenList ul{
+  list-style-type: none;
+}
+
+#screenList ul li {
+  display: inline;
+  padding: 5px;
+  margin-right: 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+  border: solid 1px #CCC;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+#addScreen {
+  margin-top: 50px;
+}
+
+.glyphicon-remove-circle {
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+/* ---------- LOGO ---------- */
+
+.Qportal-logo {
+    width: 79.5px;
+    height: 123px;
+    position: absolute;
+    z-index: 2;
+    margin: -123px 0px 0px 10px;
+}
+
+.Qportal-logo img {
+  position:absolute;
+}
+
+.druppel, .druppelgroen{
+  height:100%; width:100%;
+}
+
+.swirl {
+    -webkit-animation: spin 20.0s linear infinite;
+    width: 60px;
+    height: 60.5px;
+    margin: 1px 0 0 2px;
+}
+
+.swirlglow {
+    -webkit-animation: spinglow 20.0s linear infinite;
+    width: 60px;
+    height: 60.5px;
+    margin: 4px 0 0 8px;
+}
+
+.Q, .Qgroen {
+    -webkit-transform: translateX(38%) translateY(50%);
+    width: 45px;
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes spin {
+    0% {-webkit-transform:  translateX(12.5%) translateY(14%) rotateZ(0deg);}
+    100% {-webkit-transform: translateX(12.5%) translateY(14%) rotateZ(-360deg);}
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes spinglow {
+    0% {-webkit-transform:  translateX(7%) translateY(7%) rotateZ(0deg); opacity:0;}
+    50% {opacity:1;}
+    100% {-webkit-transform: translateX(7%) translateY(7%) rotateZ(-360deg); opacity:0;}
+}
+
+
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+/*
+ * Base structure
+ */
+
+@media all and (max-width: 1024px) {
+  html,
+  body {
+    height: 101%;
+    background-color: #FFF;
+    overflow: hidden;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  html,
+  body {
+    height: 100%;
+    background-color: #FFF;
+    // overflow: hidden;
+  }
+}
+
+body {
+  color: #000;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(0,0,0,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: rgba(0, 0,0,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+  }
+  .masthead-nav {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #000; /* IE8 proofing */
+  color: rgba(0,0,0,.5);
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 700px;
+  }
+}
