@@ -1,0 +1,36 @@
+<template name="portal">
+
+	{{#if userSelectedScreen}}
+		{{> selectScreens}}
+	{{/if}}
+
+	{{#unless userSelectedScreen}}
+		{{> portalStream}}
+	{{/unless}}
+
+</template>
+
+<template name="portalStream">
+	
+</template>
+
+<template name="selectScreens">
+	<div class="row">
+		<h1 class="cover-heading">Start streaming: </h1>
+		<p class="lead">Waar staat dit scherm..?</p>
+		{{#each locations}}
+			<div id="{{_id}}" class="location col-md-6">
+				<div class="locationHolder">
+					<h1>{{name}}</h1>
+					<div class="screenHolder">
+						<ul>
+						{{#each screens}}
+							<li class="{{_id}}">{{name}}</li>
+						{{/each}}
+						</ul>
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+</template>

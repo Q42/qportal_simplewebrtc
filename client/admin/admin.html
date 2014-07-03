@@ -1,0 +1,65 @@
+<template name="admin">
+	{{#if maximumNumberOfLocations}}
+		{{> addLocation}}
+	{{/if}}
+
+	{{#if hasLocations}}
+		{{> locationList}}
+	{{/if}}
+
+	{{> screenList}}
+	{{> addScreen}}
+</template>
+
+<template name="addLocation">
+	<div id="addLocation" class="form-inline">
+		<div class="form-group">
+			<label class="sr-only" for="newLocation">Nieuwe locatie toevoegen: </label>
+			<input type="text" class="form-control" id="newLocation" placeholder="Nieuwe locatie" />
+		</div>
+		<button id="addLocationButton" class="btn btn-default">Voeg toe</button>
+	</div>
+</template>
+
+<template name="locationList">
+	<div class="row">
+		{{#each locations}}
+			<div id="{{_id}}" class="location col-md-6">
+				<div class="locationHolder">
+				<h1>{{name}}</h1>
+					<div class="screenHolder">
+						<ol>
+						{{#each screens}}
+							<li class="{{_id}}">{{name}} <span class="glyphicon glyphicon-remove-circle"></span></li>
+						{{/each}}
+						</ol>
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+</template>
+
+<template name="addScreen">
+	<div class="row">
+		<div id="addScreen" class="form-inline">
+			<div class="form-group">
+				<label class="sr-only" for="newScreen">Nieuwe scherm aanmaken: </label>
+				<input type="text" class="form-control" id="newScreen" placeholder="Nieuw scherm" />
+			</div>
+			<button id="addScreenButton" class="btn btn-default">Voeg toe</button>
+		</div>
+	</div>
+</template>
+
+<template name="screenList">
+	<div id="screenList" class="row">
+		<h3>Huidige schermen:</h3>
+		<p class="lead">Selecteer een scherm, en klik vervolgens op welke locatie het scherm staat..</p>
+		<ul>
+			{{#each screens}}
+				<li id="{{_id}}">{{name}} <span class="glyphicon glyphicon-remove-circle"></span></li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
