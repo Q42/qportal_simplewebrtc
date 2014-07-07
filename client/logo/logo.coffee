@@ -12,7 +12,10 @@ Template.logo.rendered = -> $(".Qportal-logo").animate({'margin-top' : '10px'})
 		</div>
 		')
 
-	$(".Qportal-logo").animate({'margin-top' : '10px'})
+	$(".Qportal-logo").animate({'margin-top' : '10px'}, 400, 'swing', => 
+		$(".Qportal-logo").css('left', '10px')
+		$(".Qportal-logo").css('top', '10px')
+		)
 
 
 @removeLogo = -> 

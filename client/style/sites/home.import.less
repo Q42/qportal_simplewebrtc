@@ -145,7 +145,8 @@
 }
 
 .druppel, .druppelgroen{
-  height:100%; width:100%;
+  height:100%; 
+  width:100%;
 }
 
 .swirl {
@@ -180,6 +181,23 @@
     100% {-webkit-transform: translateX(7%) translateY(7%) rotateZ(-360deg); opacity:0;}
 }
 
+#screenInUse {
+  position: absolute;
+  background-color: #000;
+  width: 250px;
+  height: 40px;
+  margin: -250px 0px 0px 45%;
+  padding: 10px;
+  color: #FFF;
+  border: solid 1px #CCC;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  z-index: 3;
+}
 
 /*
  * Globals
@@ -316,7 +334,6 @@ body {
   color: #000; /* IE8 proofing */
   color: rgba(0,0,0,.5);
 }
-
 
 /*
  * Affix and center

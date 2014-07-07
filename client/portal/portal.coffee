@@ -31,7 +31,7 @@ Template.portalStream.rendered = ->
 		screenStartedSession(Session.get('selectedScreen')._id, window.webrtc.connection.socket.sessionid)
 		keybinds()
 	)
-	webrtc.on('videoRemoved', -> console.log this)
+	webrtc.on('videoRemoved', -> console.log "removed: " + this)
 	Session.set('currentRoom', Session.get("selectedScreen").room)
 
 Template.selectScreens.helpers
@@ -63,14 +63,20 @@ Template.portal.userSelectedScreen = ->
 	# We iterate over this array to find the nextscreen
 	window.screensArray = []
 	buildIndexOfScreens()
+	$("#screenInUse").remove()
 
 	# When we go to the next screen - set our currentlywatching back to default
 	updateScreenToDefaultRoomName Session.get('currentlyWatching')
 	setScreenReadyToTakeOver Session.get('currentlyWatching')
 
-	# Update our next screen to match our temporary room
-	updateScreensToMatchRoom getNextScreenId()
-	Session.set 'currentlyWatching', getNextScreenId()
+	# Check if next screen is busy
+	if isScreenReadyToTakeOver getNextScreenId() # Update our next screen to match our temporary room if screen is not busy
+		updateScreensToMatchRoom getNextScreenId()
+		Session.set 'currentlyWatching', getNextScreenId()
+	else # Show message that screen is busy
+		Session.set 'currentlyWatching', getNextScreenId()
+		showScreenIsInUse(getNextScreenId())
+		return
 
 # Observing when our room changes, then join that new room
 @remoteScreenConnectWatcher = ->
@@ -78,14 +84,18 @@ Template.portal.userSelectedScreen = ->
 	query.observeChanges
 		changed: (id, field) ->
 			if field.room
-				console.log("updating room", id)
 				muteLocalMic()
 				window.webrtc.leaveRoom()
-				# Want to check if screen is readyToTakeOver
 				window.webrtc.joinRoom(field.room)
 
-	watcher = screens.find()
-	watcher.observeChanges
-		changed: (id, field) ->
-			if window.webrtc.webrtc.peers.length 
-				console.log "nobody connected"
+@showScreenIsInUse = (screenId) ->
+	$("#container").prepend('<div id=\"screenInUse\"></div>')
+	text = '<p>' + screens.find(screenId).fetch()[0].name + ' is in gebruik</p>';
+	$("#screenInUse").append(text)
+	$("#screenInUse").animate({'margin-top': '25%'})
+
+	window.screenInUseTimer = Meteor.setTimeout( =>
+			$("#screenInUse").animate({'margin-top': '-250px'})
+		, 
+		10000
+		)

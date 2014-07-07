@@ -33,13 +33,12 @@
 		setScreenReadyToTakeOver Session.get('selectedScreen')._id
 		setScreenReadyToTakeOver screens.find(screenId).fetch()[0]._id
 
-	# If this screen is not our default counterpart - put the two in a temporary room !!!!!!UNLESS readyToTakeOver!!!!!
+	# If this screen is not our default counterpart - put the two in a temporary room
 	else 
 		updateRoom Session.get('selectedScreen')._id, "temproom"+Session.get('selectedScreen')._id
 		updateRoom screenId, "temproom"+Session.get('selectedScreen')._id
 		setScreenNotReadyToTakeOver Session.get('selectedScreen')._id
 		setScreenNotReadyToTakeOver screenId
-		console.log "updating room"
 
 	# Update our session selectedScreen
 	Session.set 'selectedScreen', screens.find(Session.get('selectedScreen')._id).fetch()[0]
