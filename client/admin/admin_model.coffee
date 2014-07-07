@@ -20,12 +20,6 @@
 	else
 		return false
 
-# Niet goed want er zijn meerdere schermen met zelfde room ID
-@getScreenWithRoomId = (roomId) -> 
-	for screen in screens.find().fetch()
-		if screen.room is roomId
-			return screen._id
-
 @removeScreenLocation = (screenId) -> screens.update(screenId, {$set: {location: null}})
 @removeScreen = (screenId) -> screens.remove(screenId)
 
