@@ -25,7 +25,12 @@ Template.portalStream.rendered = ->
 		setDefaultCurrentlyWatching() # Set our currently watching
 		remoteScreenConnectWatcher() # Set our observer for when our room changes (so it switches to the other screen)
 	)
-	webrtc.on('videoAdded', -> verticalAlignRemoteVideo())
+	webrtc.on('videoAdded', -> 
+		verticalAlignRemoteVideo()
+		# Animate video to screen
+		$("#container").css('margin-left', '-4000px')
+		$("#container").animate({'margin-left': '0px'})
+		)
 	webrtc.on('localStream', ->
 		muteLocalMic()
 		screenStartedSession(Session.get('selectedScreen')._id, window.webrtc.connection.socket.sessionid)
@@ -85,8 +90,7 @@ Template.portal.userSelectedScreen = ->
 		changed: (id, field) ->
 			if field.room
 				muteLocalMic()
-				window.webrtc.leaveRoom()
-				window.webrtc.joinRoom(field.room)
+				replaceRoom(field.room)
 
 @showScreenIsInUse = (screenId) ->
 	$("#container").prepend('<div id=\"screenInUse\"></div>')
@@ -98,4 +102,10 @@ Template.portal.userSelectedScreen = ->
 			$("#screenInUse").animate({'margin-top': '-250px'})
 		, 
 		10000
+		)
+
+@replaceRoom = (room) ->
+	$("#container").animate({'margin-left': '3000px'}, 300, 'swing', => 
+			window.webrtc.leaveRoom()
+			window.webrtc.joinRoom(room)
 		)
