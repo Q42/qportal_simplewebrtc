@@ -7,9 +7,14 @@ Er is een limiet van twee locaties. Meteor houd deze bij in de collection locati
 Ook kunnen er schermen worden toegevoegd, bijvoorbeeld Q020 - Keuken. Meteor houd deze bij in de collections screens.<br />
 Een scherm kan worden gekoppeld aan een locatie door op een scherm te klikken en vervolgens op de naam van de locatie.<br />
 Standaard worden schermen aan elkaar gekoppeld op basis van volgorde dus het scherm op positie 1 onder Amsterdam wordt gekoppeld aan het scherm op positie 1 onder Den Haag <i>(moet nog op een 'nettere' manier gebeuren!)</i> <br />
-Deze schermen krijgen dezelfde 'room'. Waardoor alleen die streams elkaar zien. <br /><br />
-Het is ook mogelijk om alle streams in 1 room te gooien, echter bij meer dan 5 'peers' worden de verbinding onbetrouwbaar (streams die afgesloten zijn blijven zichtbaar als zwarte schermen, duurt lang voor een stream aan de room is toegevoegd). <br />
-Om die reden is er gekozen voor elk hun eigen room.
+Deze schermen krijgen dezelfde 'room'. Waardoor deze in feite gekoppeld zijn. <br /><br />
+<i>Het zou mogelijk zijn om alle streams 1 room toe te wijzen, echter bij meer dan 5 'peers' worden de verbindingen onbetrouwbaar.</i></p>
+<ul>
+<li><i>streams die afgesloten zijn blijven zichtbaar als zwarte schermen</i></li>
+<li><i>duurt lang voor een stream aan de room is toegevoegd</i></li>
+</ul>
+<p>
+<i>Om die reden is er gekozen om twee schermen hun eigen room te geven.</i>
 </p>
 
 <h4>/client/admin</h4>
@@ -23,7 +28,7 @@ Om die reden is er gekozen voor elk hun eigen room.
 <p> Om een videoverbinding op te zetten kan naar /portal worden genavigeerd. <br />
 Hier staat een lijst van schermen (die onder /admin is aangemaakt en gekoppeld aan een ander scherm).<br />
 Selecteer het scherm en klik vervolgens op allow (auto allow is mogelijk over een beveiligde verbinding) om het streamen te starten.<br />
-Indien de tegenhanger aan het streamen is zal zijn webcamstream zichtbaar zijn, zo niet is er een leeg scherm waar uiteindelijk de remote stream in komt. </p>
+Indien de tegenhanger aan het streamen is zal zijn webcamstream zichtbaar zijn, zo niet is er een leeg scherm waar uiteindelijk de remote stream in komt zodra deze wel beschikbaar is. </p>
 
 <h4>/client/portal</h4>
 <ul>
@@ -32,13 +37,14 @@ Indien de tegenhanger aan het streamen is zal zijn webcamstream zichtbaar zijn, 
 <li>portal_model.coffee</li>
 </ul>
 
-<b><u>SimpleWebRTC</u></b>
+<b><u>SimpleWebRTC</u></b><br />
+<a href="http://simplewebrtc.com/">SimpleWebRTC Documentatie</a>
 <p>
 Wordt gebruikt voor de videostream (portal.coffee).<br />
-Er word een simpleWebRTC object aangemaakt met als parameters de DOM elementen voor de local video (eigen video stream), en de remote stream.<br /></p>
+Er wordt een SimpleWebRTC object aangemaakt met als parameters de DOM elementen voor de local video (eigen video stream), en de remote stream.<br /></p>
 <ul>
 <li>webrtc.on('joinroom') -> de room die we joinen</li>
-<li>webrtc.on('videoAdded') -> wanneer een remote peer verbind</li>
+<li>webrtc.on('videoAdded') -> wanneer een remote peer verbind en zijn video is toegevoegd aan de DOM</li>
 <li>webrtc.on('localstream') -> wanneer de local stream beschikbaar komt, wordt gebruikt om de microfoon te muten zodra we een local stream hebben</li>
 </ul>
 
@@ -46,13 +52,15 @@ Er word een simpleWebRTC object aangemaakt met als parameters de DOM elementen v
 <p>De vaste knoppen zijn eigenlijk toetsenborden: <br />
 <u>Wanneer de knop is ingedrukt -> Q </u><br />
 Unmute de microfoon voor 20 seconde en zet een readyToTakeOver waarde op false.<br />
-Deze variabele zorgt ervoor dat wanneer een ander scherm met dit scherm wilt verbinden (door middel van nextScreen) dit niet kan, er word een melding getoont dat het scherm in gebruik is.<br />
-Er begint een timer te lopen van 20 seconde, wanneer deze tijd verstreken is word de microfoon weer gemute en de readyToTakeOver op true gezet. </p>
+Deze waarde weerhoud een ander scherm van verbinden zodra dit andere scherm met ons scherm wilt verbinden (door middel van nextScreen)<br />
+Er word een melding getoont dat het scherm in gebruik is.<br />
+Er begint een timer te lopen van 20 seconde, wanneer deze tijd verstreken is word de microfoon weer gemute en de readyToTakeOver op true gezet. Nu zou een ander scherm kunnen verbinden met dit scherm</p>
 
 <p><u>Wanneer de knop word losgelaten -> A</u><br />
-Geen actie</p>
+Geen actie aan gekoppeld.</p>
 
-<p>Wanneer de pijltjestoetsen (rechts en links) worden ingedrukt gaan we naar het volgende scherm <i>(previous scherm is nog niet gebouwd)</i>.<br />
+<p><u>Pijltjestoetsen</u><br />
+Wanneer de pijltjestoetsen (rechts en links) worden ingedrukt gaan we naar het volgende scherm <i>(previous scherm is nog niet gebouwd)</i>.<br />
 Indien het scherm niet bezet is (readyToTakeOver) word er een temp + schermId roomname aangemaakt en 'joinen' beide schermen deze room.<br />
 Zodra we op een pijltjestoets drukken en weer naar het volgende scherm gaan krijgt het huidige scherm zijn defaultRoomName terug en word het volgende scherm in de tijdelijke room geplaatst.<br />
 Zodra we terug komen bij onze originele tegenhanger wordt onze room weer op de defaultRoomName waarde gezet.</p>
@@ -61,6 +69,7 @@ Zodra we terug komen bij onze originele tegenhanger wordt onze room weer op de d
 Wanneer er op het scherm geklikt word (dmv. mouseclick) wordt fullscreen aangezet. Wanneer fullscreen al aan is kan na weer tappen de microfoon geunmute worden.</p>
 
 <p><b><u>Meteor</u></b><br />
+<a href="http://docs.meteor.com/">Meteor Documentatie</a><br />
 <u>screens:</u><br /></p>
 <ul>
 <li>_id -> Het ID van een scherm </li>
@@ -78,3 +87,8 @@ Wanneer er op het scherm geklikt word (dmv. mouseclick) wordt fullscreen aangeze
 <li>_id -> ID van de locatie</li>
 <li>name -> naam van de locatie</li>
 </ul>
+
+<p><b><u>CoffeeScript</u></b><br />
+<u>syntax:</u><br />
+<a href="http://coffeescript.org/">CoffeeScript</a>
+</p>
