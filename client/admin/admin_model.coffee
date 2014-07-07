@@ -10,6 +10,7 @@
 @setDefaultRoomName = (screenId, roomName) -> screens.update(screenId, {$set: {room: roomName, defaultRoomName: roomName}})
 @screenStartedSession = (screenId, sessionId) -> screens.update(screenId, {$set: {readyToTakeOver: true, isTalking: false, sessionId: sessionId}})
 
+# Sets a screens room to its default Room
 @updateScreenToDefaultRoomName = (screenId) -> 
 	defaultRoomName = screens.find(screenId).fetch()[0].defaultRoomName
 	screens.update(screenId, {$set: {room: defaultRoomName}})
@@ -28,6 +29,7 @@
 	Session.set "selectedScreen", null
 	$(".locationHolder").css('border', 'solid 1px #CCC')
 
+# Matches screens based on order of the List -> Needs to be properly rewritten
 @matchScreens = ->
 	for i in [0...$(".screenHolder").find("ol")[0].children.length]
 		setDefaultRoomName $($(".screenHolder").find("ol")[0].children[i]).attr("class"), $($(".screenHolder").find("ol")[0].children[i]).attr("class")
